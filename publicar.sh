@@ -30,4 +30,4 @@ git commit -m "Update: Coleção $COLECAO atualizada em $(date '+%d/%m/%Y %H:%M'
 git push origin main
 
 echo "--- CONCLUÍDO ---"
-echo "Acesse seu repositório para ver o link do Pages."
+echo "Acesse https://peixoto-ops.github.io/fontes-caso-quintoandar/"

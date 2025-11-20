@@ -14,8 +14,10 @@ def main():
     TARGET_DIR = os.path.join(ROOT_DIR, BASE_DIR)
     OUTPUT_FILE = os.path.join(TARGET_DIR, "contexto_para_ia.md")
     
-    REPO_NAME = os.environ.get("REPO_NAME", "fontes-caso-quintoandar")
-    URL_BASE = f"https://peixoto-ops.github.io/{REPO_NAME}"
+    REPO_NAME = os.environ.get("REPO_NAME", "meu-projeto-juridico")
+    GITHUB_USER = os.environ.get("GITHUB_USER", "seu-usuario")
+    SITE_TITLE = os.environ.get("SITE_TITLE", f"ACERVO JURÍDICO: {REPO_NAME.upper()}")
+    URL_BASE = f"https://{GITHUB_USER}.github.io/{REPO_NAME}"
 
     print(f"--- 🔍 Varrendo: {TARGET_DIR} ---")
 
@@ -24,7 +26,7 @@ def main():
         return
 
     markdown_content = [
-        f"# ACERVO JURÍDICO: {REPO_NAME.upper()}",
+        f"# {SITE_TITLE}",
         "> 🤖 Documento gerado automaticamente para ingestão em LLMs.",
         "",
         "## 📂 Lista de Fontes",

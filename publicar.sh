@@ -13,12 +13,13 @@ else
     exit 1
 fi
 
-# Valores padrão caso não estejam no .env (opcional, mas boa prática)
+# Valores padrão ou Erro se não definido
 ZOTERO_DB="${ZOTERO_DB:-$HOME/Zotero}"
-REPO_URL="${REPO_URL:-git@github.com:peixoto-ops/fontes-caso-quintoandar.git}"
-REPO_NAME="${REPO_NAME:-fontes-caso-quintoandar}"
+REPO_URL="${REPO_URL:?❌ Erro: REPO_URL não definido no .env}"
+REPO_NAME="${REPO_NAME:?❌ Erro: REPO_NAME não definido no .env}"
 BUILD_DIR="${BUILD_DIR:-public}"
-REGEX_COLECAO="${REGEX_COLECAO:-.*Senten.a Arbitral.*Caso Quinto Andar.*}"
+REGEX_COLECAO="${REGEX_COLECAO:?❌ Erro: REGEX_COLECAO não definido no .env}"
+SITE_TITLE="${SITE_TITLE:-Memorial Digital}"
 
 echo ">>> [1/6] Preparando ambiente..."
 source venv/bin/activate
@@ -54,11 +55,12 @@ find "$BUILD_DIR" -name "*.html" -print0 | xargs -0 sed -i 's|src="/items/|src="
 
 # Base URL e Título
 sed -i "s|<head>|<head><base href=\"/$REPO_NAME/\">|g" "$BUILD_DIR/index.html"
-sed -i "s|<title>.*</title>|<title>Memorial Digital - Caso Quinto Andar</title>|g" "$BUILD_DIR/index.html"
+sed -i "s|<title>.*</title>|<title>$SITE_TITLE</title>|g" "$BUILD_DIR/index.html"
 
 echo ">>> [4/6] Gerando Contexto IA..."
 # Passamos a pasta BUILD_DIR como argumento
 python3 gerar_contexto.py "$BUILD_DIR"
+echo "📄 Arquivo de Contexto: $(pwd)/$BUILD_DIR/contexto_para_ia.md"
 
 echo ">>> [5/6] Publicando no branch 'gh-pages'..."
 # Entra na pasta, cria um git temporário e força o envio
@@ -76,7 +78,7 @@ echo ">>> [6/6] Limpeza..."
 
 echo "========================================================"
 echo " ✅ DEPLOY FINALIZADO!"
-echo " Site: https://peixoto-ops.github.io/$REPO_NAME/"
+echo " Site: https://${GITHUB_USER:-peixoto-ops}.github.io/$REPO_NAME/"
 echo " Branch: gh-pages (Conteúdo gerado)"
 echo " Branch: main (Seus scripts)"
 echo "========================================================"

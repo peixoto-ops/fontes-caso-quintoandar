@@ -1,84 +1,74 @@
 #!/bin/bash
 
 # ==============================================================================
-# DEPLOY VIA BRANCH ORFÃO (Clean Architecture)
+# SCRIPT DE PUBLICAÇÃO - SIMPLIFICADO
 # ==============================================================================
 
-# --- CONFIGURAÇÕES ---
-# Carrega variáveis do arquivo .env
+# Carrega variáveis do arquivo .env, ignorando comentários e tratando aspas
 if [ -f .env ]; then
-    export $(cat .env | xargs)
+    # Lê e exporta apenas linhas que contêm variáveis (não comentários)
+    while IFS= read -r line; do
+        if [[ $line =~ ^[^#].*= ]] && [ -n "$line" ]; then
+            # Remove espaços em branco no início e fim
+            line=$(echo $line | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            # Exporta a variável usando source para interpretar corretamente as aspas
+            eval "export $line"
+        fi
+    done < .env
 else
     echo "❌ Arquivo .env não encontrado!"
     exit 1
 fi
 
-# Valores padrão ou Erro se não definido
-ZOTERO_DB="${ZOTERO_DB:-$HOME/Zotero}"
+# Valores obrigatórios
 REPO_URL="${REPO_URL:?❌ Erro: REPO_URL não definido no .env}"
 REPO_NAME="${REPO_NAME:?❌ Erro: REPO_NAME não definido no .env}"
 BUILD_DIR="${BUILD_DIR:-public}"
 REGEX_COLECAO="${REGEX_COLECAO:?❌ Erro: REGEX_COLECAO não definido no .env}"
-SITE_TITLE="${SITE_TITLE:-Memorial Digital}"
 
-echo ">>> [1/6] Preparando ambiente..."
+echo ">>> Preparando ambiente..."
 source venv/bin/activate
 rm -rf "$BUILD_DIR"
-rm -rf zotero-site
 
-echo ">>> [2/6] Exportando Zotero..."
-# Configuração temporária
+echo ">>> Exportando coleção do Zotero..."
+# Configuração temporária para zotsite
 cat > zotsite.conf <<EOF
 [zotsite_zotero_app]
 data_dir = ${ZOTERO_DB}
 [zotsite_export_app]
-output_dir = ${BUILD_DIR}
+output_dir = zotero-site
 collection = ${REGEX_COLECAO}
 EOF
 
 zotsite export --config zotsite.conf
 rm zotsite.conf
 
-# Se o Zotsite criar pasta com nome errado, corrige
-if [ -d "zotero-site" ]; then mv zotero-site "$BUILD_DIR"; fi
-if [ ! -d "$BUILD_DIR" ]; then echo "❌ Falha na exportação"; exit 1; fi
+# Mover conteúdo para o diretório BUILD_DIR
+if [ -d "zotero-site" ]; then
+    mv zotero-site "$BUILD_DIR"
+else
+    echo "❌ Falha na exportação - diretório zotero-site não foi criado"
+    exit 1
+fi
 
-echo ">>> [3/6] Correções de Rota (Links Relativos)..."
+if [ ! -d "$BUILD_DIR" ]; then
+    echo "❌ Falha na exportação - BUILD_DIR não existe"
+    exit 1
+fi
+
+# Marca para GitHub Pages
 touch "$BUILD_DIR/.nojekyll"
 
-# Remove links absolutos (/items -> items)
-find "$BUILD_DIR" -name "*.js" -print0 | xargs -0 sed -i 's|"/items/|"items/|g'
-find "$BUILD_DIR" -name "*.js" -print0 | xargs -0 sed -i 's|"/projects/|"projects/|g'
-find "$BUILD_DIR" -name "*.js" -print0 | xargs -0 sed -i 's|"/documents/|"documents/|g'
-find "$BUILD_DIR" -name "*.html" -print0 | xargs -0 sed -i 's|href="/items/|href="items/|g'
-find "$BUILD_DIR" -name "*.html" -print0 | xargs -0 sed -i 's|src="/items/|src="items/|g'
-
-# Base URL e Título
-sed -i "s|<head>|<head><base href=\"/$REPO_NAME/\">|g" "$BUILD_DIR/index.html"
-sed -i "s|<title>.*</title>|<title>$SITE_TITLE</title>|g" "$BUILD_DIR/index.html"
-
-echo ">>> [4/6] Gerando Contexto IA..."
-# Passamos a pasta BUILD_DIR como argumento
+echo ">>> Gerando contexto para IA..."
 python3 gerar_contexto.py "$BUILD_DIR"
-echo "📄 Arquivo de Contexto: $(pwd)/$BUILD_DIR/contexto_para_ia.md"
 
-echo ">>> [5/6] Publicando no branch 'gh-pages'..."
-# Entra na pasta, cria um git temporário e força o envio
+echo ">>> Publicando no gh-pages..."
 cd "$BUILD_DIR"
 git init
 git add .
 git commit -m "Deploy: $(date '+%Y-%m-%d %H:%M')"
-# Força o push para o branch gh-pages do repositório remoto
 git push --force "$REPO_URL" HEAD:gh-pages
 cd ..
 
-echo ">>> [6/6] Limpeza..."
-# Opcional: manter a pasta public para conferência ou apagar
-# rm -rf "$BUILD_DIR" 
-
-echo "========================================================"
-echo " ✅ DEPLOY FINALIZADO!"
-echo " Site: https://${GITHUB_USER:-peixoto-ops}.github.io/$REPO_NAME/"
-echo " Branch: gh-pages (Conteúdo gerado)"
-echo " Branch: main (Seus scripts)"
-echo "========================================================"
+echo "✅ Publicação concluída!"
+echo "Site disponível em: https://${GITHUB_USER:-peixoto-ops}.github.io/${REPO_NAME}/"

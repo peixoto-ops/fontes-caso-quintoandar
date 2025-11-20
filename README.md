@@ -1,70 +1,40 @@
-# Memorial Digital Jurídico
+# Memorial Digital Jurídico - Simplificado
 
-Este projeto automatiza a publicação de fontes bibliográficas jurídicas do Zotero para um site estático no GitHub Pages e gera um artefato Markdown estruturado para uso em LLMs (Large Language Models).
+Projeto para publicação de documentos jurídicos do Zotero para GitHub Pages com contexto enriquecido para IA.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-1.  **Site Estático**: Gera um site navegável com o acervo jurídico exportado do Zotero.
-2.  **Contexto para IA**: Cria um arquivo `contexto_para_ia.md` contendo links indexados para todos os documentos, facilitando a ingestão por IAs.
-3.  **Deploy Automatizado**: Script `publicar.sh` que realiza todo o processo de build e deploy para o GitHub Pages.
+- **Exportação Seletiva**: Usa regex para exportar apenas a coleção específica do Zotero
+- **Contexto para IA**: Gera `contexto_para_ia.md` com mapeamento "Pedra de Roseta" (contrato, sentença, REsp)
+- **Publicação Automática**: Faz deploy para GitHub Pages
 
-## 🛠️ Configuração
+## Configuração
 
-O projeto utiliza um arquivo `.env` para gerenciar configurações sensíveis e específicas do ambiente.
-
-### 1. Criar arquivo `.env`
-Copie o exemplo abaixo e crie um arquivo `.env` na raiz do projeto:
+Crie um arquivo `.env`:
 
 ```bash
-# Caminho para o banco de dados do Zotero (SQLite)
 ZOTERO_DB="/home/seu-usuario/Zotero"
-
-# URL do repositório GitHub (SSH ou HTTPS)
 REPO_URL="git@github.com:usuario/repo.git"
-
-# Nome do repositório (usado para gerar a Base URL do site)
 REPO_NAME="nome-do-repo"
-
-# Regex para filtrar a coleção do Zotero a ser exportada
 REGEX_COLECAO=".*Nome da Coleção.*"
-
-# Título do Site (aparece na aba do navegador e no contexto IA)
-SITE_TITLE="Memorial Digital - Meu Caso"
-
-# Usuário do GitHub (usado para gerar a URL do Pages)
 GITHUB_USER="seu-usuario"
-
-# Pasta temporária de build (padrão: public)
-BUILD_DIR="public"
+SITE_TITLE="Memorial Digital"
 ```
 
-### 2. Dependências
-- **Zotero 7**
-- **Python 3**
-- **Zotsite** (Instalado via pip/venv)
-
-## 📦 Como Usar
-
-Para gerar o site e fazer o deploy, execute o script principal:
+## Uso
 
 ```bash
 ./publicar.sh
 ```
 
-O script irá:
-1.  Ler as configurações do `.env`.
-2.  Exportar a coleção definida do Zotero.
-3.  Corrigir links e caminhos para o GitHub Pages.
-4.  Gerar o arquivo de contexto para IA.
-5.  Publicar o resultado no branch `gh-pages`.
+O script:
+1. Lê configurações do `.env`
+2. Exporta coleção específica do Zotero via zotsite
+3. Gera contexto para IA com Pedra de Roseta
+4. Publica no gh-pages
 
-## 📂 Estrutura do Projeto
+## Scripts
 
-- `publicar.sh`: Script orquestrador de build e deploy.
-- `gerar_contexto.py`: Script Python que indexa os PDFs e gera o Markdown.
-- `.env`: Arquivo de configuração (não versionado).
-- `public/`: Pasta gerada contendo o site estático e o arquivo de contexto (não versionada).
-
-## 🔗 Links Úteis
-
-- [Acesse o Site Publicado](https://peixoto-ops.github.io/fontes-caso-quintoandar/)
+- `publicar.sh`: Publicação automatizada
+- `gerar_contexto.py`: Gera contexto para IA com mapeamento enriquecido
+- `pedra_de_rosseta.json`: Mapeamento entre IDs e documentos jurídicos

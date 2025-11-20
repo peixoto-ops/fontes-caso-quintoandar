@@ -1,0 +1,66 @@
+{
+  "documentos_principais": {
+    "contrato_locacao": {
+      "ids_candidatos": [
+        "i1028.pdf"
+      ],
+      "descricao": "Contrato de Locação (o dos 41 links)",
+      "encontrado": true,
+      "id_confirmado": "i1028.pdf",
+      "titulo_completo": "VULNERABILIDADE DIGITAL DO CONSUMIDOR NOS MODELOS ZERO-PRICE",
+      "observacoes": "Identificado como um dos candidatos a contrato de locação",
+      "github_url": "https://peixoto-ops.github.io/fontes-caso-quintoandar/storage/i1028.pdf"
+    },
+    "sentenca_arbitral": {
+      "ids_candidatos": [
+        "i645.pdf"
+      ],
+      "descricao": "Sentença Arbitral (a da 'cláusula fantasma')",
+      "encontrado": true,
+      "id_confirmado": "i645.pdf",
+      "titulo_completo": "D5F6732EFE0621_sentencaarbitralquintoandartjs.pdf",
+      "observacoes": "Claramente identificado como sentença arbitral relacionada ao QuintoAndar",
+      "github_url": "https://peixoto-ops.github.io/fontes-caso-quintoandar/storage/i645.pdf"
+    },
+    "agravo_tjsp": {
+      "ids_candidatos": [],
+      "descricao": "Agravo de Instrumento TJSP (Caso QuintoAndar/CDC) - 2172223-37",
+      "encontrado": false,
+      "id_confirmado": null,
+      "titulo_completo": "Agravo 2172223-37 (caso QuintoAndar)",
+      "observacoes": "Não encontrado diretamente no mapeamento por palavra-chave",
+      "github_url": "N/A"
+    },
+    "resp_1602076": {
+      "ids_candidatos": [
+        "i649.pdf",
+        "i652.pdf"
+      ],
+      "descricao": "REsp 1.602.076 (STJ - Franquia/Nulidade Formal)",
+      "encontrado": true,
+      "id_confirmado": "i649.pdf",
+      "titulo_completo": "Comentário ao REsp 1.602.076/SP",
+      "observacoes": "Também encontrado i652.pdf - 'Recurso especial...Contrato de franquia...'",
+      "github_url": "https://peixoto-ops.github.io/fontes-caso-quintoandar/storage/i649.pdf"
+    },
+    "laudos_medicos": {
+      "ids_candidatos": [],
+      "descricao": "Laudos Médicos (se estiverem no repo)",
+      "encontrado": false,
+      "id_confirmado": null,
+      "titulo_completo": "Laudos Médicos",
+      "observacoes": "Não identificados no mapeamento atual",
+      "github_url": "N/A"
+    }
+  },
+  "documentos_secundarios": {
+    "i1029.pdf": {
+      "descricao": "PDF relacionado a 'O PRINCÍPIO DA COOPERAÇÃO COMO NORMA FUNDAMENTAL DO PROCESSO CIVIL E SEUS REFLEXOS NA ARBITRAGEM'",
+      "tipo": "Artigo/Apresentação"
+    },
+    "i652.pdf": {
+      "descricao": "Recurso especial sobre contrato de franquia e cláusula compromissória patológica",
+      "tipo": "Acórdão STJ"
+    }
+  }
+}

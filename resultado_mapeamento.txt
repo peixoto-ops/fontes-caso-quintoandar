@@ -1,0 +1,40 @@
+--- 🔍 Mapeamento de Documentos Zotero ---
+ID do Anexo -> Título do Pai (Nome do arquivo original)
+
+🔎 Buscando por: 'Contrato de Locação'
+   ⚠️ [ID 743] TJDFT - contrato de locação e arbitragem (Sem anexos detectados)
+   ⚠️ [ID 823] TJDFT - contrato de locação e arbitragem (Sem anexos detectados)
+   ⚠️ [ID 943] TJDFT - contrato de locação e arbitragem (Sem anexos detectados)
+
+🔎 Buscando por: 'Sentença Arbitral'
+   ⚠️ [ID 615] Terceira Turma fixa critérios para a validade da impugnação ao cumprimento de sentença arbitral (Sem anexos detectados)
+   ⚠️ [ID 617] Direito de alegar nulidade na impugnação ao cumprimento de sentença arbitral decai em 90 dias (Sem anexos detectados)
+   ⚠️ [ID 749] STJ - efeito suspensivo da sentença arbitral (Sem anexos detectados)
+   ⚠️ [ID 751] UCP - anulação da sentença arbitral por ordem pública (Sem anexos detectados)
+   ⚠️ [ID 784] STJ - efeito suspensivo da sentença arbitral (Sem anexos detectados)
+   ⚠️ [ID 829] STJ - efeito suspensivo da sentença arbitral (Sem anexos detectados)
+   ⚠️ [ID 831] UCP - anulação da sentença arbitral por ordem pública (Sem anexos detectados)
+   ⚠️ [ID 865] STJ - efeito suspensivo da sentença arbitral (Sem anexos detectados)
+   ⚠️ [ID 949] STJ - efeito suspensivo da sentença arbitral (Sem anexos detectados)
+   ⚠️ [ID 951] UCP - anulação da sentença arbitral por ordem pública (Sem anexos detectados)
+   ⚠️ [ID 985] STJ - efeito suspensivo da sentença arbitral (Sem anexos detectados)
+   ⚠️ [ID 1075] Superior Tribunal de Justiça - 2019 - Efeito suspensivo da sentença arbitral (versão duplicada) (Sem anexos detectados)
+   ⚠️ [ID 1077] Superior Tribunal de Justiça - 2019 - Efeito suspensivo da sentença arbitral (Sem anexos detectados)
+   ✅ i1085.pdf  <--  Ação anulatória de sentença arbitral no Tribunal de Justiça do Distrito Federal e dos Territórios (Original: Alencar e Gomes - 2022 - Ação anulatória de sentença arbitral no Tribunal de Justiça do Distrito Federal e dos Territórios.pdf)
+   ✅ i1071.pdf  <--  Ação anulatória de sentença arbitral no Tribunal de Justiça do Distrito Federal e dos Territórios (Original: /media/peixoto/Portable/deep-mcp-research/notes/00 - Entrada/Validação de Fontes Jurídicas/fontes_sentenca/Alencar e Gomes - 2022 - Ação anulatória de sentença arbitral no Tribunal de Justiça do Distrito Federal e dos Territórios.pdf)
+   ✅ i1116.pdf  <--  A anulação da sentença arbitral por violação da ordem pública internacional (Original: /media/peixoto/Portable/deep-mcp-research/notes/00 - Entrada/Validação de Fontes Jurídicas/fontes_sentenca/Paixão - A anulação da sentença arbitral por violação da ordem pública internacional.pdf)
+   ✅ i1046.pdf  <--  A anulação da sentença arbitral por violação da ordem pública internacional (Original: Paixão - A anulação da sentença arbitral por violação da ordem pública internacional.pdf)
+   ✅ i1080.pdf  <--  Superior Tribunal de Justiça - 2019 - Efeito suspensivo da sentença arbitral (Original: Superior Tribunal de Justiça - 2019 - Efeito suspensivo da sentença arbitral.pdf)
+
+🔎 Buscando por: '2172223'
+   ❌ Nenhum item encontrado.
+
+🔎 Buscando por: '1.602.076'
+   ✅ i649.pdf  <--  Comentário ao REsp 1.602.076/SP (Original: Ferreira - 2017 - Cláusula compromissória patológica e contrato de franquia a aplicabilidade do princípio da Kompeten.pdf)
+
+🔎 Buscando por: 'Franquia'
+   ✅ i638.pdf  <--  Terceira Turma vê franquia como contrato de adesão e anula cláusula de arbitragem (Original: 2016-10-03_08-06_Terceira-Turma-ve-franquia-como-contrato-de-adesao-e-anula-clausula-de-arbitra.html)
+   ✅ i652.pdf  <--  Recurso especial. Direito civil E processual civil. Contrato de franquia. Contrato de adesão. Arbitragem. Requisito de validade do art. 4º, § 2º, da lei 9.307/96. Descumprimento. Reconhecimento prima facie de cláusula compromissória “patológica”. Atuação do poder judiciário. Possibilidade. Nulidade reconhecida. Recurso provido. (Original: Andrighi - 2016 - Recurso especial. Direito civil E processual civil. Contrato de franquia. Contrato de adesão. Arbitr.pdf)
+
+🔎 Buscando por: 'QuintoAndar'
+   ⚠️ [ID 645] D5F6732EFE0621_sentencaarbitralquintoandartjs.pdf (Sem anexos detectados)

@@ -3,18 +3,18 @@ import glob
 import sys
 
 def main():
-    # Pega o diretório passado pelo shell script ou usa 'public'
+    # Pega o diretório passado pelo shell script ou usa variável de ambiente ou padrão 'public'
     if len(sys.argv) > 1:
         BASE_DIR = sys.argv[1]
     else:
-        BASE_DIR = "public"
+        BASE_DIR = os.environ.get("BUILD_DIR", "public")
 
     # Caminho absoluto
     ROOT_DIR = os.getcwd() # Assume que está rodando da raiz
     TARGET_DIR = os.path.join(ROOT_DIR, BASE_DIR)
     OUTPUT_FILE = os.path.join(TARGET_DIR, "contexto_para_ia.md")
     
-    REPO_NAME = "fontes-caso-quintoandar"
+    REPO_NAME = os.environ.get("REPO_NAME", "fontes-caso-quintoandar")
     URL_BASE = f"https://peixoto-ops.github.io/{REPO_NAME}"
 
     print(f"--- 🔍 Varrendo: {TARGET_DIR} ---")

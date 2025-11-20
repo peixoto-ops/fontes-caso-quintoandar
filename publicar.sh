@@ -5,11 +5,20 @@
 # ==============================================================================
 
 # --- CONFIGURAÇÕES ---
-ZOTERO_DB="$HOME/Zotero"
-REPO_URL="git@github.com:peixoto-ops/fontes-caso-quintoandar.git" # Use SSH ou HTTPS
-REPO_NAME="fontes-caso-quintoandar"
-BUILD_DIR="public" # Pasta temporária de construção
-REGEX_COLECAO=".*Senten.a Arbitral.*Caso Quinto Andar.*"
+# Carrega variáveis do arquivo .env
+if [ -f .env ]; then
+    export $(cat .env | xargs)
+else
+    echo "❌ Arquivo .env não encontrado!"
+    exit 1
+fi
+
+# Valores padrão caso não estejam no .env (opcional, mas boa prática)
+ZOTERO_DB="${ZOTERO_DB:-$HOME/Zotero}"
+REPO_URL="${REPO_URL:-git@github.com:peixoto-ops/fontes-caso-quintoandar.git}"
+REPO_NAME="${REPO_NAME:-fontes-caso-quintoandar}"
+BUILD_DIR="${BUILD_DIR:-public}"
+REGEX_COLECAO="${REGEX_COLECAO:-.*Senten.a Arbitral.*Caso Quinto Andar.*}"
 
 echo ">>> [1/6] Preparando ambiente..."
 source venv/bin/activate

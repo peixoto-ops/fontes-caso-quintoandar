@@ -67,7 +67,7 @@ git init
 git add .
 git commit -m "Deploy: $(date '+%Y-%m-%d %H:%M')"
 # Força o push para o branch gh-pages do repositório remoto
-git push --force "$REPO_URL" master:gh-pages
+git push --force "$REPO_URL" HEAD:gh-pages
 cd ..
 
 echo ">>> [6/6] Limpeza..."

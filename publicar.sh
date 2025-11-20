@@ -31,24 +31,29 @@ source venv/bin/activate
 rm -rf "$BUILD_DIR"
 
 echo ">>> Exportando coleção do Zotero..."
-# Configuração temporária para zotsite
+# Configuração temporária para zotsite com opções para filtragem precisa
 cat > zotsite.conf <<EOF
 [zotsite_zotero_app]
 data_dir = ${ZOTERO_DB}
+
 [zotsite_export_app]
-output_dir = zotero-site
+output_dir = ${BUILD_DIR}
 collection = ${REGEX_COLECAO}
+match_children = true
 EOF
 
 zotsite export --config zotsite.conf
 rm zotsite.conf
 
-# Mover conteúdo para o diretório BUILD_DIR
-if [ -d "zotero-site" ]; then
-    mv zotero-site "$BUILD_DIR"
-else
-    echo "❌ Falha na exportação - diretório zotero-site não foi criado"
-    exit 1
+# Verifica se o zotsite criou o diretório corretamente
+if [ ! -d "$BUILD_DIR" ]; then
+    # Em alguns casos, o zotsite pode ignorar o output-dir e criar 'zotero-site'
+    if [ -d "zotero-site" ]; then
+        mv zotero-site "$BUILD_DIR"
+    else
+        echo "❌ Falha na exportação - diretório $BUILD_DIR não foi criado"
+        exit 1
+    fi
 fi
 
 if [ ! -d "$BUILD_DIR" ]; then
@@ -58,6 +63,11 @@ fi
 
 # Marca para GitHub Pages
 touch "$BUILD_DIR/.nojekyll"
+
+echo ">>> Limpando arquivos que não fazem parte da coleção específica..."
+cd "$BUILD_DIR"
+python3 ../limpar_apos_exportar.py
+cd ..
 
 echo ">>> Gerando contexto para IA..."
 python3 gerar_contexto.py "$BUILD_DIR"

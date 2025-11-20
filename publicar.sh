@@ -9,7 +9,7 @@ OUTPUT_DIR="docs"
 
 # 3. NOME EXATO DA COLEÇÃO (Copiei da sua imagem)
 # Use aspas duplas para garantir que o bash leia os espaços
-COLECAO="Sentença Arbitral - Caso Quinto Andar"
+COLECAO=".*Sentença Arbitral - Caso Quinto Andar.*"
 
 # --- EXECUÇÃO ---
 
@@ -22,7 +22,7 @@ rm -rf "$OUTPUT_DIR"
 
 echo "--- 3. Exportando APENAS a coleção: $COLECAO ---"
 # A mágica acontece aqui: --collection filtra o DB
-zotsite export --data "$ZOTERO_DB" --output "$OUTPUT_DIR" --collection "$COLECAO"
+zotsite export --output "$OUTPUT_DIR" --collection "$COLECAO"
 
 echo "--- 4. Enviando para o GitHub ---"
 git add .

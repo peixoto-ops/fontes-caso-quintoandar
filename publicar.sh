@@ -29,7 +29,7 @@ rm -rf "$OUTPUT_DIR"
 # --- 3. GERAÇÃO DO SITE (ZOTSITE) ---
 echo ">>> [3/5] Exportando coleção: $COLECAO"
 # Exporta apenas a coleção filtrada
-zotsite export --data "$ZOTERO_DB" --output "$OUTPUT_DIR" --collection "$COLECAO"
+zotsite export --output "$OUTPUT_DIR" --collection "$COLECAO"
 
 # --- 4. CORREÇÕES PÓS-PROCESSAMENTO (CRÍTICO PARA GITHUB PAGES) ---
 echo ">>> [4/5] Aplicando correções de rota para GitHub Pages..."
